@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de codar 4</title>
+</head>
+<body>
+
+    <button id="CadastroFunction">CadastroEstudante</button>
+
+    <script>
+
+        function cadastrarEstudantes() {
+            alert("Cadastro de estudantes...");
+
+            let estudantes = [];
+            let nomeEstudante;
+
+            while (true) {
+                nomeEstudante = prompt("Digite o nome do estudante (ou digite 'PARE' para finalizar o cadastro):");
+
+                if (nomeEstudante === null || nomeEstudante.toUpperCase() === "PARE") {
+                    break;
+                }
+
+                estudantes.push(nomeEstudante);
+            }
+
+            return estudantes;
+        }
+
+        function listarEstudantes(estudantes) {
+            if (estudantes.length === 0) {
+                alert("Nenhum estudante cadastrado.");
+            } else {
+                let listaEstudantes = "Lista de estudantes:\n";
+                for (let i = 0; i < estudantes.length; i++) {
+                    listaEstudantes += `${i + 1}. ${estudantes[i]}\n`;
+                }
+                alert(listaEstudantes);
+            }
+        }
+
+        function main() {
+            let estudantes = [];
+
+            document.getElementById("CadastroFunction").addEventListener("click", function() {
+                let opcao = prompt("Escolha uma opção:\n1) Cadastrar estudantes\n2) Listar estudantes cadastrados\n3) Sair");
+
+                switch (opcao) {
+                    case "1":
+                        estudantes = estudantes.concat(cadastrarEstudantes());
+                        break;
+                    case "2":
+                        listarEstudantes(estudantes);
+                        break;
+                    case "3":
+                        alert("Saindo...");
+                        break;
+                    default:
+                        alert("Opção inválida. Tente novamente.");
+                }
+            });
+        }
+
+        main();
+
+    </script>
+</body>
+</html>
+
