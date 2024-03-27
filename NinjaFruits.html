@@ -3,17 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NinjaFruits</title>
+    <title>Ninja Fruit</title>
 </head>
 <body>
     <script>
-        let frutas = ["banana", "pêra", "maça", "limão", "uva", "pêssego", "mêlancia"]
-        let nomedaFruta = (prompt("Digite o nome de uma fruta: "));
-        if (frutas.includes (nomedaFruta)) {
-            alert(`Sim, "${nomedaFruta}" está na lista.`);
-        } else {
-            alert(`Não, "${nomedaFruta}" não está na lista.`);
-        }
+        let frutas = ["maçã", "banana", "laranja", "uva", "morango"];
+
+console.log("Lista de frutas disponíveis para compra:");
+console.log(frutas);
+
+function removerFruta(fruta) {
+    let index = frutas.indexOf(fruta);
+    if (index !== -1) {
+        frutas.splice(index, 1);
+        console.log(`${fruta} foi retirada da lista.`);
+    } else {
+        console.log("Fruta indisponível no nosso mercado.");
+    }
+}
+
+function adicionarFruta(fruta) {
+    if (!frutas.includes(fruta)) {
+        frutas.push(fruta);
+        console.log(`${fruta} foi adicionada à lista.`);
+    } else {
+        console.log("Esta fruta já está na lista.");
+    }
+}
+
+function mostrarFrutasFaltando() {
+    let frutasFaltam = frutas.join(", ");
+    console.log(`Frutas que faltam: ${frutasFaltam}`);
+}
+
+while (true) {
+    let opcao = prompt("Escolha uma opção:\n1. Adicionar fruta\n2. Remover fruta\n3. Mostrar frutas que faltam\n4. Encerrar").toLowerCase();
+
+    switch (opcao) {
+        case "1":
+        case "adicionar fruta":
+            let novaFruta = prompt("Digite o nome da fruta que deseja adicionar: ").toLowerCase();
+            adicionarFruta(novaFruta);
+            break;
+        case "2":
+        case "remover fruta":
+            let frutaRemover = prompt("Digite o nome da fruta que deseja remover: ").toLowerCase();
+            removerFruta(frutaRemover);
+            break;
+        case "3":
+        case "mostrar frutas que faltam":
+            mostrarFrutasFaltando();
+            break;
+        case "4":
+        case "encerrar":
+            console.log("Lista de compras finalizada.");
+            break;
+        default:
+            console.log("Opção inválida.");
+    }
+
+    if (opcao === "4" || opcao === "encerrar") {
+        break;
+    }
+}
     </script>
 </body>
 </html>
